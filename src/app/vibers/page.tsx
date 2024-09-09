@@ -20,6 +20,8 @@ const ProfilePage = () => {
     { id: 4, image: `https://${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/bafybeih24jxktqxb5dybh6mdeawv2cig6lx6skrz2ggbeleemgm6ompswi`, likes: 2200, comments: 78 },
     { id: 5, image: `https://${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/bafybeiackjb3p756alfnd2545itaua36yn7qc4i2wnfuddtqorlxnlqkgm`, likes: 890, comments: 25 },
     { id: 6, image: `https://${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/bafybeigwzwscmua7wxgat6zwgc25xxnhqwfk7rjixnelsxx52dvf4ljz2a`, likes: 1700, comments: 55 },
+    { id: 5, image: `https://${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/bafybeiackjb3p756alfnd2545itaua36yn7qc4i2wnfuddtqorlxnlqkgm`, likes: 890, comments: 25 },
+    { id: 6, image: `https://${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/bafybeigwzwscmua7wxgat6zwgc25xxnhqwfk7rjixnelsxx52dvf4ljz2a`, likes: 1700, comments: 55 },
   ];
 
   return (
@@ -91,12 +93,12 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="mt-12 border-2 border-grey-300 rounded-lg p-4">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-6">
           {posts.map((post) => (
             <div
               key={post.id}
-              className="relative group overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-105"
+              className="relative w-[300px] h-[255px] group overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-105"
             >
               <img src={post.image}  className="w-full h-64 object-cover" />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -108,6 +110,7 @@ const ProfilePage = () => {
             </div>
           ))}
         </div>
+      </div>
       </main>
     </div>
     </div>
