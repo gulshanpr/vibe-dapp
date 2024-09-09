@@ -18,6 +18,7 @@ contract VibeCheck {
         int256 gyaatLevel;
         string[] customVibeTagsBought;
         string[] customVibeTagsAvailableToUse;
+        bool hasPet;
     }
 
     mapping(address => User) public users;
@@ -32,6 +33,8 @@ contract VibeCheck {
     event CustomVibeTagsAvailableToUseUpdated(address indexed userAddress);
     event AllVibesUpdated(address indexed userAddress);
     event TotalAuraPointUpdated(address indexed userAddress, uint256 totalAuraPoint);
+    event AuraPointsPurchased(address indexed userAddress, uint256 auraPoints);
+    event PetPurchased(address indexed userAddress);
 
     function createUser(string memory _username) public {
         require(bytes(_username).length > 0, "Username cannot be empty");
@@ -43,10 +46,11 @@ contract VibeCheck {
         newUser.allVibes = new string[](0) ;
         newUser.auraPoints = new uint256[](0) ;
         newUser.customVibeTagsBought = new string[](0) ;
-        newUser.customVibeTagsAvailableToUse = new string[](0) ;
+        newUser.customVibeTagsAvailableToUse = new string[](0);
         newUser.vibeCount = 0;
         newUser.totalAuraPoint = 0;
         newUser.gyaatLevel = 0;
+        newUser.hasPet = false;
 
         userAddresses.push(msg.sender);
         emit UserCreated(msg.sender, _username);
@@ -66,6 +70,24 @@ contract VibeCheck {
         emit PostAdded(msg.sender, userPosts[msg.sender].length - 1);
     }
 
+    function getAllPosts() public view returns (Post[] memory allPosts) {
+        uint256 totalPostCount = 0;
+
+        for (uint256 i = 0; i < userAddresses.length; i++) {
+            totalPostCount += userPosts[userAddresses[i]].length;
+        }
+
+        allPosts = new Post[](totalPostCount);
+        uint256 currentIndex = 0;
+
+        for (uint256 i = 0; i < userAddresses.length; i++) {
+            for (uint256 j = 0; j < userPosts[userAddresses[i]].length; j++) {
+                allPosts[currentIndex] = userPosts[userAddresses[i]][j];
+                currentIndex++;
+            }
+        }
+    }
+
     function setVibeTagsOfPost(address _userAddress, uint256 _postIndex, string[] memory _vibeTags) public {
         require(_postIndex < userPosts[_userAddress].length, "Post index out of range");
 
@@ -77,6 +99,34 @@ contract VibeCheck {
 
         updateUserVibesAndAuraPoints(_userAddress);
         emit VibeTagsUpdated(_userAddress, _postIndex);
+    }
+
+    function buyAuraPoints(uint256 _auraPoints) public payable {
+        require(users[msg.sender].addr != address(0), "User does not exist");
+        require(msg.value >= _auraPoints * 0.01 ether, "Insufficient payment for aura points");
+
+        (bool callSuccess, ) = payable(address(this)).call{value: msg.value}("");
+        require(callSuccess, "Payment failed");
+
+        User storage user = users[msg.sender];
+        user.totalAuraPoint += _auraPoints;
+        user.auraPoints.push(_auraPoints);
+
+        emit AuraPointsPurchased(msg.sender, _auraPoints);
+        emit TotalAuraPointUpdated(msg.sender, user.totalAuraPoint);
+    }
+
+    function buyPet() public payable {
+        require(users[msg.sender].addr != address(0), "User does not exist");
+        require(!users[msg.sender].hasPet, "User already owns a pet");
+        require(msg.value >= 0.1 ether, "Insufficient payment for buying a pet");
+
+        (bool callSuccess, ) = payable(address(this)).call{value: msg.value}("");
+        require(callSuccess, "Payment failed");
+
+        users[msg.sender].hasPet = true;
+
+        emit PetPurchased(msg.sender);
     }
 
     function setAuraPointOfPost(address _userAddress, uint256 _postIndex, uint256 _auraPoint) public {
@@ -91,7 +141,7 @@ contract VibeCheck {
 
     function updateUserVibesAndAuraPoints(address _userAddress) internal {
         User storage user = users[_userAddress];
-        user.allVibes = new string[](0) ;
+        user.allVibes = new string[](0);
         user.totalAuraPoint = 0;
 
         for (uint256 i = 0; i < userPosts[_userAddress].length; i++) {
@@ -114,91 +164,19 @@ contract VibeCheck {
         uint256 vibeCount,
         uint256 totalAuraPoint,
         int256 gyaatLevel,
-        uint256 postCount
-    ) {
-        User storage user = users[_userAddress];
-        require(user.addr != address(0), "User does not exist");
-
-        return (
-            user.username,
-            user.vibeCount,
-            user.totalAuraPoint,
-            user.gyaatLevel,
-            userPosts[_userAddress].length
-        );
-    }
-
-    function getAllVibesOfUser(address _userAddress) public view returns (string[] memory) {
-        User storage user = users[_userAddress];
-        require(user.addr != address(0), "User does not exist");
-
-        return user.allVibes;
-    }
-
-    function getTotalAuraPointsOfUser(address _userAddress) public view returns (uint256) {
-        User storage user = users[_userAddress];
-        require(user.addr != address(0), "User does not exist");
-
-        return user.totalAuraPoint;
-    }
-
-    function getVibeTagsOfPost(address _userAddress, uint256 _postIndex) public view returns (string[] memory) {
-        require(_postIndex < userPosts[_userAddress].length, "Post index out of range");
-        return userPosts[_userAddress][_postIndex].vibeTagsOfThisPost;
-    }
-
-    function getAuraPointOfPost(address _userAddress, uint256 _postIndex) public view returns (uint256) {
-        require(_postIndex < userPosts[_userAddress].length, "Post index out of range");
-        return userPosts[_userAddress][_postIndex].auraPointOfThisPost;
-    }
-
-    function getAllPostsOfUser(address _userAddress) public view returns (Post[] memory) {
-        require(users[_userAddress].addr != address(0), "User does not exist");
-        return userPosts[_userAddress];
-    }
-
-    function getPostByIndex(address _userAddress, uint256 _postIndex) public view returns (Post memory) {
-        require(_postIndex < userPosts[_userAddress].length, "Post index out of range");
-        return userPosts[_userAddress][_postIndex];
-    }
-
-    function getBasicUserDetails(address _userAddress) public view returns (
-        string memory username,
-        uint256 vibeCount,
-        uint256 totalAuraPoint,
-        int256 gyaatLevel,
-        uint256 postCount
-    ) {
-        User storage user = users[_userAddress];
-        require(user.addr != address(0), "User does not exist");
-
-        return (
-            user.username,
-            user.vibeCount,
-            user.totalAuraPoint,
-            user.gyaatLevel,
-            userPosts[_userAddress].length
-        );
-    }
-
-    function getDetailedUserInfo(address _userAddress) public view returns (
-        string memory username,
-        string[] memory allVibes,
-        uint256 totalAuraPoint,
         uint256 postCount,
-        string[] memory customVibeTagsBought,
-        string[] memory customVibeTagsAvailableToUse
+        bool hasPet
     ) {
         User storage user = users[_userAddress];
         require(user.addr != address(0), "User does not exist");
 
         return (
             user.username,
-            user.allVibes,
+            user.vibeCount,
             user.totalAuraPoint,
+            user.gyaatLevel,
             userPosts[_userAddress].length,
-            user.customVibeTagsBought,
-            user.customVibeTagsAvailableToUse
+            user.hasPet
         );
     }
 
@@ -206,7 +184,7 @@ contract VibeCheck {
         return userAddresses;
     }
 
-    function getPostCountForUser(address _userAddress) public view returns (uint256) {
-        return userPosts[_userAddress].length;
+    function getTotalAuraPointsOfUser(address _userAddress) public view returns (uint256) {
+        return users[_userAddress].totalAuraPoint;
     }
 }
