@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        custom : ["Playwrite CU", "cursive"],
+        custom2 : ["Protest Guerrilla", "sans-serif"]
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -79,10 +83,6 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      fontFamily: {
-        custom : ["Playwrite CU", "cursive"],
-        custom2 : ["Protest Guerrilla", "sans-serif"]
-      }
     },
   },
   plugins: [require("tailwindcss-animate")],
