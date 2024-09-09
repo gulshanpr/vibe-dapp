@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-xl font-bold text-indigo-600">
+              <Link href="/" className="text-[1.4rem] font-bold text-[#7400c3]">
                 VIBE<span className='text-black font-custom'>check</span>
               </Link>
             </div>
