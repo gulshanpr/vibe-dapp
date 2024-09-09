@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Model for User, Post and Tag
+model User {
+  id                String    @id @default(uuid())
+  veriferId         String    @unique
+  email             String?   @unique
+  name              String?
+  address           String    @unique
+  userName          String    @unique
+  gyattLevel        String    @default("0")
+  overAllAuraPoints String    @default("0")
+  allVibes          String[]  @default([])
+  posts             Post[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime? @updatedAt
+}
+
+model Post {
+  id         String @id @default(uuid())
+  postURL    String
+  vibes      Tag[]  @relation("PostToCategory")
+  auraPoints String
+  author     User   @relation(fields: [authorId], references: [id])
+  authorId   String @default(uuid())
+}
+
+model Tag {
+  id    String @id @default(uuid())
+  name  String
+  posts Post[] @relation("PostToCategory")
+}
+
+// future: might need to create model to capture event from blockchain
