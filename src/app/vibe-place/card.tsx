@@ -49,9 +49,9 @@ const Components = () => {
         <div className='ml-[200px] flex space-x-10'>
             {/* First Card */}
             <div className=''>
-                <Card className="w-[200px] h-[300px] items-center justify-center text-center">
+                <Card className="w-[400px] h-[500px] items-center justify-center text-center">
                     <CardContent>
-                        <div className='flex justify-center mt-[50px]'>
+                        <div className='flex justify-center mt-[50px] mb-[15rem]'>
                             <Image src="/images/image.png" alt="dogo" width={100} height={100} />
                         </div>
                         <div className='flex justify-center'>
@@ -63,7 +63,7 @@ const Components = () => {
                                 changeText={<span className="group inline-flex items-center">bought</span>}
                                 pendingText={<span className="group inline-flex items-center">buying...</span>}
                                 // Call the onBuy function here
-                                onClick={() => onBuy('dogo image')}
+                                // onClick={() => onBuy('dogo image')}
                             />
                         </div>
                     </CardContent>
@@ -72,13 +72,13 @@ const Components = () => {
 
             {/* Additional Cards */}
             <div>
-                <Card className="w-[200px] h-[300px] items-center justify-center text-center">
+                <Card className="w-[400px] h-[500px] items-center justify-center text-center ">
 
                     <CardHeader>
-                        <CardTitle>Buy Aura Point</CardTitle>
+                        <CardTitle className='mb-[5rem]'>Buy Aura Point</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <LightModeOutlinedIcon sx={{ fontSize: 90, color: yellow[500] }} />
+                        <LightModeOutlinedIcon className='mb-[9rem]' sx={{ fontSize: 90, color: yellow[500] }} />
                         <div className='flex justify-center'>
                             <AnimatedSubscribeButton
                                 buttonColor="#000000"
@@ -87,7 +87,7 @@ const Components = () => {
                                 initialText={<span className="group inline-flex items-center">buy</span>}
                                 changeText={<span className="group inline-flex items-center">bought</span>}
                                 pendingText={<span className="group inline-flex items-center">buying...</span>}
-                                onClick={() => onBuy('Aura Point')}
+                                // onClick={() => onBuy('Aura Point')}
                             />
                         </div>
                     </CardContent>
@@ -95,13 +95,13 @@ const Components = () => {
             </div>
 
             <div>
-                <Card className="w-[200px] h-[300px] items-center justify-center text-center">
+                <Card className="w-[400px] h-[500px] items-center justify-center text-center">
 
                     <CardHeader>
-                        <CardTitle>Swap/Trade Aura Point</CardTitle>
+                        <CardTitle className='mb-[5rem]'>Swap/Trade Aura Point</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <WhatshotOutlinedIcon sx={{ fontSize: 90, color: yellow[500] }} />
+                        <WhatshotOutlinedIcon className='mb-[9rem]' sx={{ fontSize: 90, color: yellow[500] }} />
                         <div className='flex justify-center'>
                             <AnimatedSubscribeButton
                                 buttonColor="#000000"
@@ -110,7 +110,7 @@ const Components = () => {
                                 initialText={<span className="group inline-flex items-center">buy</span>}
                                 changeText={<span className="group inline-flex items-center">bought</span>}
                                 pendingText={<span className="group inline-flex items-center">buying...</span>}
-                                onClick={() => onBuy('Swap Aura Point')}
+                                // onClick={() => onBuy('Swap Aura Point')}
                             />
                         </div>
                     </CardContent>
@@ -118,9 +118,9 @@ const Components = () => {
             </div>
 
             <div>
-                <Card className="w-[200px] h-[300px] items-center justify-center text-center">
+                <Card className="w-[400px] h-[500px] items-center justify-center text-center">
                     <CardHeader>
-                        <div className='mt-[40px]'>
+                        <div className=' mb-[20rem]'>
                             <CardTitle>Buy Custom Vibe-tags</CardTitle>
                         </div>
                     </CardHeader>
@@ -133,7 +133,7 @@ const Components = () => {
                                 initialText={<span className="group inline-flex items-center">buy</span>}
                                 changeText={<span className="group inline-flex items-center">bought</span>}
                                 pendingText={<span className="group inline-flex items-center">buying...</span>}
-                                onClick={() => onBuy('Custom Vibe-tags')}
+                                // onClick={() => onBuy('Custom Vibe-tags')}
                             />
                         </div>
                     </CardContent>

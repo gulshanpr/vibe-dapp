@@ -127,7 +127,7 @@ export const Login = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center ">
         <LoadingSpinner />
       </div>
     );
@@ -135,9 +135,9 @@ export const Login = () => {
 
   if (loggedIn) {
     return (
-      <div className="flex flex-col space-y-4 items-center justify-center h-screen">
+      <div className="flex items-center justify-center pt-3">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mr-3 "
           onClick={handleGoToApp}
         >
           Go to App
@@ -149,7 +149,7 @@ export const Login = () => {
           Get Details
         </button> */}
         <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
           onClick={logout}
         >
           Log Out
@@ -159,9 +159,9 @@ export const Login = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mr-3"
         onClick={login}
       >
         Check your vibe
