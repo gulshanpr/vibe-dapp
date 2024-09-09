@@ -8,7 +8,7 @@ export default function Home() {
 
       <h1 className="text-[10rem] pt-[6rem] font-medium text-[#7400c3] ">VIBE<span className="text-[8rem] pt-[6rem] font-custom text-black" >check.</span></h1>
       <p className="text-[5rem] font-bold">so Loud.</p>
-      <p className="text-[5rem] font-thin mb-2">so Quite.</p>
+      <p className="text-[5rem] font-thin mb-2">so Quiet.</p>
 
       
       <Login/>
