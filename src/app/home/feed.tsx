@@ -138,16 +138,16 @@ const FeedCard = () => {
                                 <div className="text-center">
                                     <Select onValueChange={handleVibeSelect}>
                                         <SelectTrigger className="">
-                                            <SelectValue placeholder="Theme" />
+                                            <SelectValue placeholder="Vibe Tag" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="light">Hot🥵🥵</SelectItem>
-                                            <SelectItem value="dark">Cool😎😎</SelectItem>
-                                            <SelectItem value="system">Eww🤮🤮</SelectItem>
-                                            <SelectItem value="system">Badie🤤🤤</SelectItem>
-                                            <SelectItem value="system">Cute🥺🥺</SelectItem>
-                                            <SelectItem value="system">Sexy🔥🔥</SelectItem>
-                                            <SelectItem value="system">Uncle🥸🥸</SelectItem>
+                                            <SelectItem value="Hot">Hot🥵🥵</SelectItem>
+                                            <SelectItem value="Cool">Cool😎😎</SelectItem>
+                                            <SelectItem value="Eww">Eww🤮🤮</SelectItem>
+                                            <SelectItem value="Badie">Badie🤤🤤</SelectItem>
+                                            <SelectItem value="Cute">Cute🥺🥺</SelectItem>
+                                            <SelectItem value="Sexy">Sexy🔥🔥</SelectItem>
+                                            <SelectItem value="Uncle">Uncle🥸🥸</SelectItem>
                                             <div className='mx-[32px]'>
                                                 <AddOutlinedIcon
                                                     sx={{ fontSize: 20 }} onClick={

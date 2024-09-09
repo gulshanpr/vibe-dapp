@@ -27,7 +27,7 @@ export default function RootLayout({
           fontSans.variable
         )}>
         <Navbar />
-        <main className="container mx-auto px-4 py-8">
+        <main className="">
           {children}
         </main>
         <Test/>

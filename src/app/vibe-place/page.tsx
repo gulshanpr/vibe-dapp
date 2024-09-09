@@ -5,9 +5,8 @@ import Testing from './test';
 
 const page = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center mt-[10rem] mr-[15rem]'>
       <Components/>
-      {/* <Testing/> */}
     </div>
   )
 }
