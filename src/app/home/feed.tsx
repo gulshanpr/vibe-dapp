@@ -82,7 +82,7 @@ const FeedCard = () => {
                                         src={`https://${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${hash}`}
                                         alt={`Image from IPFS hash ${hash}`}
                                     />
-                                    <div className="mt-[100px] ml-[20px] space-y-[20px]">
+                                    <div className="mt-[100px] ml-[20px] space-y-[60px]">
                                         <div className=''>
                                             <LightModeOutlinedIcon sx={{ fontSize: 50 }}
                                                 onClick={() => handleLightModeClick(index)}
@@ -93,13 +93,13 @@ const FeedCard = () => {
                                                 onClick={() => handleWhatshotClick(index)}
                                             />
                                         </div>
-                                        <div className=''>
+                                        {/* <div className=''>
                                             <AddBoxOutlinedIcon
                                                 sx={{ fontSize: 50 }}
                                                 onClick={() => handleUploadToggle()
                                                 }
                                             />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </CardContent>
                             </Card>
