@@ -71,6 +71,7 @@ export interface DockIconProps {
   className?: string;
   children?: React.ReactNode;
   props?: PropsWithChildren;
+  onClick : any;
 }
 
 const DockIcon = ({
@@ -80,6 +81,7 @@ const DockIcon = ({
   mouseX,
   className,
   children,
+  onClick,
   ...props
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
