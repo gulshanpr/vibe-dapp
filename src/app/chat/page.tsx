@@ -194,13 +194,13 @@ const XMTPChat = () => {
       ) : !isXmtpInitialized ? (
         <div>Contacting fellow <span className='text-[#7400c3] font-custom'>vibers...</span></div>
       ) : (
-        <div className="w-full flex">
+        <div className="flex">
           <div className="w-1/3 pr-4">
-            <h2 className="text-xl font-bold mb-4 text-[#7400c3] font-custom">ViBERS</h2>
+            <h2 className="text-[3rem] font-bold mb-4 text-[#7400c3] font-custom">ViBERS</h2>
             {conversations.map((conv, index) => (
               <div
                 key={index}
-                className={`p-2 mb-2 cursor-pointer ${conv.peerAddress === currentPeerAddress ? 'bg-blue-100' : 'bg-gray-100'
+                className={`p-2 mb-2 cursor-pointer ${conv.peerAddress === currentPeerAddress ? 'bg-purple-300' : 'bg-gray-100'
                   }`}
                 onClick={() => {
                   setCurrentPeerAddress(conv.peerAddress);
@@ -239,7 +239,7 @@ const XMTPChat = () => {
                       className={`mb-2 ${msg.senderAddress === address ? 'text-right' : 'text-left'}`}
                     >
                       <span
-                        className={`inline-block p-2 rounded ${msg.senderAddress === address ? 'bg-blue-200' : 'bg-gray-200'
+                        className={`inline-block p-2 rounded ${msg.senderAddress === address ? 'bg-purple-300' : 'bg-gray-200'
                           }`}
                       >
                         {msg.content}
