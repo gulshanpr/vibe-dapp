@@ -20,7 +20,7 @@ const config = {
     extend: {
       fontFamily: {
         custom : ["Playwrite CU", "cursive"],
-        custom2 : ["Protest Guerrilla", "sans-serif"]
+        custom2 : ["Poppins", "sans-serif"]
       },
       colors: {
         border: "hsl(var(--border))",
