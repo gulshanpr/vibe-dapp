@@ -192,11 +192,11 @@ const XMTPChat = () => {
           Connect Wallet
         </button>
       ) : !isXmtpInitialized ? (
-        <div>Initializing XMTP...</div>
+        <div>Contacting fellow <span className='text-[#7400c3] font-custom'>vibers...</span></div>
       ) : (
-        <div className="w-full max-w-4xl flex">
+        <div className="w-full flex">
           <div className="w-1/3 pr-4">
-            <h2 className="text-xl font-bold mb-4">Conversations</h2>
+            <h2 className="text-xl font-bold mb-4 text-[#7400c3] font-custom">ViBERS</h2>
             {conversations.map((conv, index) => (
               <div
                 key={index}
@@ -227,11 +227,12 @@ const XMTPChat = () => {
               </button>
             </div>
           </div>
-          <div className="w-2/3">
+
+          <div className="w-2/3 ml-[6rem] mr-[6rem]">
             {currentPeerAddress && (
               <>
-                <h2 className="text-xl font-bold mb-4">Chat with {currentPeerAddress}</h2>
-                <div ref={chatContainerRef} className="bg-gray-100 p-4 rounded-lg mb-4 h-96 overflow-y-auto">
+                <h2 className="text-xl font-bold mb-4">Vibe with {currentPeerAddress}</h2>
+                <div ref={chatContainerRef} className="bg-gray-100 p-4 rounded-lg mb-4 h-[500px] overflow-y-auto">
                   {messages[currentPeerAddress]?.map((msg, index) => (
                     <div
                       key={index}
@@ -246,20 +247,27 @@ const XMTPChat = () => {
                     </div>
                   ))}
                 </div>
+                <div className='grid grid-cols-3'>
                 <input
                   type="text"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyDown={handleKeyPress}
-                  className="w-full border rounded px-4 py-2"
+                  className=" border rounded px-4 py-2 col-span-2"
                   placeholder="Type a message..."
                 />
+
+                <div className='flex justify-center items-center'>
                 <button
                   onClick={sendMessage}
-                  className="mt-2 bg-green-500 text-white px-4 py-2 rounded w-full"
+                  className=" bg-green-700 text-white font-extrabold ml-[4rem] px-4 py-2 rounded w-[20rem] "
                 >
                   Send
                 </button>
+                </div>
+             
+                </div>
+               
               </>
             )}
           </div>
